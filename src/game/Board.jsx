@@ -1,7 +1,7 @@
 import React from 'react'
 import Coin from './Coin'
-
-function Board({width, height, redIsNext, boardstate, onMove}) {
+import './boardStyle.css'
+function Board({width, height, boardstate, onMove}) {
 
     let board =[];
    
@@ -11,14 +11,14 @@ function Board({width, height, redIsNext, boardstate, onMove}) {
                 const pos = i * width + j
                 row.push(<Coin key={pos} color={boardstate[pos]} onClick={()=>onMove(j)}/>)
             }
-            board.push(<div key={`row-${i}`} style={{display:'flex'}}> 
+            board.push(<div className='row' key={`row-${i}`} > 
                 {row}
             </div>)
         }
     
 
   return (
-    <div>
+    <div className='board'>
         {board}
     </div>
   )

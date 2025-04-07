@@ -1,0 +1,8 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    /* border: 1px solid blue; */
+    font-family: sans-serif;
+}

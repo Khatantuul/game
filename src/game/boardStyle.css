@@ -1,0 +1,13 @@
+.board{
+    border: 1px solid green;
+    padding: 20px;
+
+  
+}
+
+.row{
+    /* border: 1px solid blue; */
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
