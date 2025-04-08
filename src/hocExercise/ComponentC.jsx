@@ -19,5 +19,6 @@ export default withErrorCurried({
   wrapper: (errorMsg) => {
     return <div style={{backgroundColor: "red", color: 'white'}}>{errorMsg}</div>
   },
-  componentName: 'ComponentC'
+  componentName: 'ComponentC',
+  onError: (errorType) => console.log(errorType)
 })(ComponentC)

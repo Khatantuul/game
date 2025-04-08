@@ -1,26 +1,34 @@
 import { Component } from "react";
 
-function withErrorCurried(renderConfigObj){
+function withErrorCurried(renderConfigObj={}){
+    const renderConfig = {
+        onError: () => {},
+        ...renderConfigObj
+    }
     return function(OldComponent){
         return class NewComponent extends Component{
             constructor(props){
                 super(props);
                 this.state = {
                     hasError: false,
-                    errorMessage: ''
+                    errorMessage: '',
+                    errorType: ''
                 }
             }
 
             componentDidCatch(error){
-                this.setState({hasError: true, errorMessage: error.toString()})
+                this.setState({hasError: true, errorMessage: error.toString(),
+                    errorType: error.name
+                })
             }
 
             render(){
                 if(this.state.hasError){
+                    renderConfig.onError(this.state.errorType)
                     return (
                         <>
-                        <h1>Below error happened inside component {renderConfigObj.componentName}</h1>
-                        {renderConfigObj.wrapper(this.state.errorMessage)}
+                        <h1>Below error happened inside component {renderConfig.componentName}</h1>
+                        {renderConfig.wrapper(this.state.errorMessage)}
                         </>
                     )
                 }
